@@ -1,0 +1,116 @@
+public class Person {
+String firstName;
+String lastName;
+String phoneNumber;
+String city;
+String address;
+String email;
+String gender;
+Person(String firstName, String lastName, String phoneNumber, String city, String address,
+String email, String gender)
+{ this.firstName = firstName;
+this.lastName = lastName;
+this.phoneNumber = phoneNumber;
+this.city = city;
+this.address = address;
+this.email = email;
+this.gender = gender; }
+public String toString() { return firstName + " " + lastName + ": " + phoneNumber + ": " + city +
+": " + address + ": " + email + ": " + gender; }
+} package Assignment;
+import java.util.*;
+public class Directory { static ArrayList directory = new ArrayList();
+public static void addPerson(){//add new person to the list
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter first name:"); //for add the name
+String firstName = sc.nextLine();
+System.out.println("Enter last name:");
+String lastName = sc.nextLine(); //for add the last name
+System.out.println("Enter phone number:");
+String phoneNumber = sc.nextLine();
+System.out.println("Enter city name:"); //to add the city
+String city = sc.nextLine();
+System.out.println("Enter an Address:"); //to add the adress
+String address = sc.nextLine();
+System.out.println("Enter an Email:"); //to add the emil
+String email = sc.nextLine();
+System.out.println("Enter gender:"); //to select the gender
+String gender = sc.nextLine();
+Person p = new Person(firstName, lastName, phoneNumber, city, address, email, gender);
+directory.add(p);
+System.out.println( p + ".... is added to the directory successfully"); }
+public static void removePerson() { //for remove thee name
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter first name of person to remove:"); //slecet the name
+String firstName = sc.nextLine();
+boolean removed = false;
+for (Person p : directory)
+{ if (p.firstName.equalsIgnoreCase(firstName))
+{ directory.remove(p);
+System.out.println("Removed " + p + " from the directory.")
+; removed = true; break; }
+} if (!removed) {
+System.out.println("Person not found in directory."); } }
+public static void updatePhoneNumber() { //to updet the phone number
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter first name of person to update phone number:");
+String firstName = sc.nextLine();
+boolean found = false;
+for (Person p : directory) {
+if (p.firstName.equalsIgnoreCase(firstName)) //to find the person with the number
+{ System.out.println("Enter new phone number for " + p.firstName + ":");
+String newPhoneNumber = sc.nextLine();
+p.phoneNumber = newPhoneNumber;
+System.out.println("Phone number updated for "+p+": "+ p.phoneNumber);
+found = true; break; }
+} if (!found) {
+System.out.println("Person not found in directory.");
+} } public static void displayDirectory()
+{ if (directory.isEmpty()) {
+System.out.println("Directory is empty.");
+} else {
+System.out.println("Phone Directory: "); for (Person p : directory)
+{ System.out.println(p); } } }
+public static void searchByName() //to search with the name
+{ Scanner sc = new Scanner(System.in);
+System.out.println("Enter first name of person to search:");
+String firstName = sc.nextLine();
+boolean found = false; for (Person p : directory)
+{ if (p.firstName.equalsIgnoreCase(firstName)) {
+System.out.println(firstName + ": " + p.phoneNumber);
+found = true; break; } }
+if (!found) {
+System.out.println("Person not found in directory."); } }
+public static void sortDirectory() {
+Collections.sort(directory, Comparator.comparing(person -> person.firstName.toLowerCase()));
+System.out.println("Directory sorted by first name.");
+displayDirectory(); }
+public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+while (true) {
+System.out.println("Enter your choice:");
+System.out.println("1. Add person details into the telephone book.");
+System.out.println("2. Remove a person from the telephone book.");
+System.out.println("3. Update a telephone number by providing person first name.");
+System.out.println("4. Display the entire telephone book.");
+System.out.println("5. Search a telephone number based on person first name.");
+System.out.println("6. Sort the entire telephone book.")
+; System.out.println("7. Exit the program.");
+int choice = sc.nextInt();
+switch (choice) {//select what you wont to do
+case 1:
+addPerson(); break;
+case 2:
+removePerson(); break;
+case 3:
+updatePhoneNumber(); break;
+case 4:
+displayDirectory(); break;
+case 5:
+searchByName(); break; case 6: sortDirectory(); break;
+case 7:
+System.out.println("Program Exited successfully");
+System.exit(0);
+default:
+System.out.println("Invalid choice. Please try again."); } } } }
+Paste your Output Screen here 
